@@ -1,5 +1,5 @@
 """
-pythoneda/shared/artifact/infrastructure/artifact/cli/artifact_repository_folder_cli.py
+pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_repository_folder_cli.py
 
 This file defines the ArtifactRepositoryFolderCli.
 

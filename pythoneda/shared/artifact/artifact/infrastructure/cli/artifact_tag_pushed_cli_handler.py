@@ -1,7 +1,7 @@
 """
-pythoneda/shared/artifact/infrastructure/cli/artifact/artifact_changes_committed_cli_handler.py
+pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_tag_pushed_cli_handler.py
 
-This file defines the ArtifactChangesCommittedCliHandler class.
+This file defines the ArtifactTagPushedCliHandler class.
 
 Copyright (C) 2023-today rydnr's pythoneda-shared-artifact/artifact-infrastructure
 
@@ -19,30 +19,29 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from pythoneda.infrastructure.cli import CliHandler
-from pythoneda.shared.artifact.events import Change
-from pythoneda.shared.artifact.events.artifact import ArtifactChangesCommitted
-from pythoneda.shared.git import GitCommit, GitDiff, GitRepo
+from pythoneda.shared.artifact.events.artifact import ArtifactTagPushed
+from pythoneda.shared.git import GitRepo
 import sys
 
 
-class ArtifactChangesCommittedCliHandler(CliHandler):
+class ArtifactTagPushedCliHandler(CliHandler):
 
     """
-    A CLI handler in charge of handling ArtifactChangesCommitted events.
+    A CLI handler in charge of handling ArtifactTagPushed events.
 
-    Class name: ArtifactChangesCommittedCliHandler
+    Class name: ArtifactTagPushedCliHandler
 
     Responsibilities:
-        - Build and emit a ArtifactChangesCommitted event from the information provided by the CLI.
+        - Build and emit a ArtifactTagPushed event from the information provided by the CLI.
 
     Collaborators:
-        - pythoneda.artifact.application.ArtifactApp: Gets notified back to process the ArtifactChangesCommitted event.
-        - pythoneda.shared.artifact.events.artifact.ArtifactChangesCommitted
+        - pythoneda.artifact.application.ArtifactApp: Gets notified back to process the ArtifactTagPushed event.
+        - pythoneda.shared.artifact.artifact.events.ArtifactTagPushed
     """
 
     def __init__(self, app):
         """
-        Creates a new ArtifactChangesCommittedCliHandler.
+        Creates a new ArtifactTagPushedCliHandler.
         :param app: The ArtifactApp application.
         :type app: pythoneda.artifact.application.ArtifactApp
         """
@@ -59,13 +58,8 @@ class ArtifactChangesCommittedCliHandler(CliHandler):
             sys.exit(1)
         else:
             git_repo = GitRepo.from_folder(args.repository_folder)
-            change = Change.from_unidiff_text(
-                GitDiff(args.repository_folder).committed_diff(),
-                git_repo.url,
-                git_repo.rev,
-                args.repository_folder,
+            event = ArtifactTagPushed(
+                args.tag, git_repo.url, git_repo.rev, git_repo.folder
             )
-            hash, diff = GitCommit(args.repository_folder).latest_commit()
-            event = ArtifactChangesCommitted(change, hash)
-            ArtifactChangesCommittedCliHandler.logger().debug(event)
+            ArtifactTagPushedCliHandler.logger().debug(event)
             await self.app.emit(event)

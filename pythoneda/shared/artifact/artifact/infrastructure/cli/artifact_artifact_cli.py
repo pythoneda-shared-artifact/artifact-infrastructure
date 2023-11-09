@@ -1,5 +1,5 @@
 """
-pythoneda/shared/artifact/infrastructure/artifact/cli/artifact_artifact_cli.py
+pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_artifact_cli.py
 
 This file defines the ArtifactArtifactCli.
 
@@ -36,7 +36,7 @@ class ArtifactArtifactCli(BaseObject, PrimaryPort, abc.ABC):
 
     Collaborators:
         - pythoneda.application.PythonEDA subclasses: They are notified back with the information retrieved from the command line.
-        - pythoneda.shared.artifact.infrastructure.artifact.cli.*: CLI handlers.
+        - pythoneda.shared.artifact.artifact.infrastructure.cli.*: CLI handlers.
     """
 
     @classmethod
@@ -83,7 +83,7 @@ class ArtifactArtifactCli(BaseObject, PrimaryPort, abc.ABC):
             event_in_snake_case = self.__class__.camel_to_snake(args.event)
 
             module = import_module(
-                f"pythoneda.shared.artifact.infrastructure.artifact.cli.{event_in_snake_case}_cli_handler"
+                f"pythoneda.shared.artifact.artifact.infrastructure.cli.{event_in_snake_case}_cli_handler"
             )
             handler_class = getattr(module, f"{args.event}CliHandler")
             await handler_class(app).handle(args)

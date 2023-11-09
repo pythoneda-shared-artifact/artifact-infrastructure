@@ -1,7 +1,7 @@
 """
-pythoneda/shared/artifact/infrastructure/artifact/cli/artifact_tag_pushed_cli_handler.py
+pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_commit_tagged_cli_handler.py
 
-This file defines the ArtifactTagPushedCliHandler class.
+This file defines the ArtifactCommitTaggedCliHandler class.
 
 Copyright (C) 2023-today rydnr's pythoneda-shared-artifact/artifact-infrastructure
 
@@ -19,29 +19,29 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 from pythoneda.infrastructure.cli import CliHandler
-from pythoneda.shared.artifact.events.artifact import ArtifactTagPushed
+from pythoneda.shared.artifact.artifact.events import ArtifactCommitTagged
 from pythoneda.shared.git import GitRepo
 import sys
 
 
-class ArtifactTagPushedCliHandler(CliHandler):
+class ArtifactCommitTaggedCliHandler(CliHandler):
 
     """
-    A CLI handler in charge of handling ArtifactTagPushed events.
+    A CLI handler in charge of handling ArtifactCommitTagged events.
 
-    Class name: ArtifactTagPushedCliHandler
+    Class name: ArtifactCommitTaggedCliHandler
 
     Responsibilities:
-        - Build and emit a ArtifactTagPushed event from the information provided by the CLI.
+        - Build and emit a ArtifactCommitTagged event from the information provided by the CLI.
 
     Collaborators:
-        - pythoneda.artifact.application.ArtifactApp: Gets notified back to process the ArtifactTagPushed event.
-        - pythoneda.shared.artifact.events.artifact.ArtifactTagPushed
+        - pythoneda.artifact.application.ArtifactApp: Gets notified back to process the ArtifactCommitTagged event.
+        - pythoneda.shared.artifact.artifact.events.ArtifactCommitTagged
     """
 
     def __init__(self, app):
         """
-        Creates a new ArtifactTagPushedCliHandler.
+        Creates a new ArtifactCommitTaggedCliHandler.
         :param app: The ArtifactApp application.
         :type app: pythoneda.artifact.application.ArtifactApp
         """
@@ -58,8 +58,8 @@ class ArtifactTagPushedCliHandler(CliHandler):
             sys.exit(1)
         else:
             git_repo = GitRepo.from_folder(args.repository_folder)
-            event = ArtifactTagPushed(
+            event = ArtifactCommitTagged(
                 args.tag, git_repo.url, git_repo.rev, git_repo.folder
             )
-            ArtifactTagPushedCliHandler.logger().debug(event)
+            ArtifactCommitTaggedCliHandler.logger().debug(event)
             await self.app.emit(event)

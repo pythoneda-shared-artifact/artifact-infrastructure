@@ -1,7 +1,7 @@
 """
-pythoneda/shared/artifact/infrastructure/__init__.py
+pythoneda/shared/artifact/artifact/__init__.py
 
-This file ensures pythoneda.shared.artifact.infrastructure is a namespace.
+This file ensures pythoneda.shared.artifact.artifact is a namespace.
 
 Copyright (C) 2023-today rydnr's pythoneda-shared-artifact/artifact-infrastructure
 

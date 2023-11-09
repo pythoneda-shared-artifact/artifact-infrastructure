@@ -1,7 +1,7 @@
 """
-pythoneda/shared/artifact/infrastructure/artifact/__init__.py
+pythoneda/shared/artifact/artifact/infrastructure/cli/__init__.py
 
-This file ensures pythoneda.shared.artifact.infrastructure.artifact is a namespace.
+This file ensures pythoneda.shared.artifact.artifact.infrastructure.cli is a namespace.
 
 Copyright (C) 2023-today rydnr's pythoneda-shared-artifact/artifact-infrastructure
 
@@ -19,3 +19,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 __path__ = __import__("pkgutil").extend_path(__path__, __name__)
+
+from .artifact_changes_committed_cli_handler import ArtifactChangesCommittedCliHandler
+from .artifact_cli import ArtifactCli
+from .artifact_commit_pushed_cli_handler import ArtifactCommitPushedCliHandler
+from .artifact_commit_tagged_cli_handler import ArtifactCommitTaggedCliHandler
+from .artifact_tag_pushed_cli_handler import ArtifactTagPushedCliHandler
+from .repository_folder_cli import RepositoryFolderCli
