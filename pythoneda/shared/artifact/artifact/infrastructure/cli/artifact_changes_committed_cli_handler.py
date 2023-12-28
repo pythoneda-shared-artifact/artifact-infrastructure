@@ -65,7 +65,7 @@ class ArtifactChangesCommittedCliHandler(CliHandler):
                 git_repo.rev,
                 args.repository_folder,
             )
-            hash, diff = GitCommit(args.repository_folder).latest_commit()
-            event = ArtifactChangesCommitted(change, hash)
+            hash_value, diff = GitCommit(args.repository_folder).latest_commit()
+            event = ArtifactChangesCommitted(change, hash_value)
             ArtifactChangesCommittedCliHandler.logger().debug(event)
             await self.app.emit(event)

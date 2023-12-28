@@ -35,7 +35,8 @@ class ArtifactArtifactCli(BaseObject, PrimaryPort, abc.ABC):
         - Parse the command-line to retrieve the information about the event to emit.
 
     Collaborators:
-        - pythoneda.application.PythonEDA subclasses: They are notified back with the information retrieved from the command line.
+        - pythoneda.application.PythonEDA subclasses: They are notified back with the information retrieved
+        from the command line.
         - pythoneda.shared.artifact.artifact.infrastructure.cli.*: CLI handlers.
     """
 
