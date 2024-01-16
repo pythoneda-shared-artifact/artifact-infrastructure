@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8
 """
 pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_tag_pushed_cli_handler.py
 
@@ -18,9 +19,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from pythoneda.infrastructure.cli import CliHandler
 from pythoneda.shared.artifact.events.artifact import ArtifactTagPushed
 from pythoneda.shared.git import GitRepo
+from pythoneda.shared.infrastructure.cli import CliHandler
 import sys
 
 

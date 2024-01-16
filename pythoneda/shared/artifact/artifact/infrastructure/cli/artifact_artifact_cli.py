@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8
 """
 pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_artifact_cli.py
 
@@ -35,7 +36,7 @@ class ArtifactArtifactCli(BaseObject, PrimaryPort, abc.ABC):
         - Parse the command-line to retrieve the information about the event to emit.
 
     Collaborators:
-        - pythoneda.application.PythonEDA subclasses: They are notified back with the information retrieved
+        - pythoneda.shared.application.PythonEDA subclasses: They are notified back with the information retrieved
         from the command line.
         - pythoneda.shared.artifact.artifact.infrastructure.cli.*: CLI handlers.
     """

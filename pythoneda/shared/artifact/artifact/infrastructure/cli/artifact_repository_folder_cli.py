@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8
 """
 pythoneda/shared/artifact/artifact/infrastructure/cli/artifact_repository_folder_cli.py
 
@@ -20,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import abc
 import argparse
-from pythoneda import BaseObject, PrimaryPort
+from pythoneda.shared import BaseObject, PrimaryPort
 
 
 class ArtifactRepositoryFolderCli(BaseObject, PrimaryPort, abc.ABC):

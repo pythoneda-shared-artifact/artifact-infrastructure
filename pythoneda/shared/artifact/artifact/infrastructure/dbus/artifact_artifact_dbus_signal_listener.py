@@ -1,3 +1,4 @@
+# vim: set fileencoding=utf-8
 """
 pythoneda/shared/artifact/infrastructure/artifact/dbus/artifact_artifact_dbus_signal_listener.py
 
@@ -20,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import abc
 from dbus_next import BusType, Message
-from pythoneda.event import Event
+from pythoneda.shared import Event
 from pythoneda.shared.artifact.events.artifact import (
     ArtifactChangesCommitted,
     ArtifactCommitPushed,
@@ -33,7 +34,7 @@ from pythoneda.shared.artifact.events.artifact.infrastructure.dbus import (
     DbusArtifactCommitTagged,
     DbusArtifactTagPushed,
 )
-from pythoneda.infrastructure.dbus import DbusSignalListener
+from pythoneda.shared.infrastructure.dbus import DbusSignalListener
 from typing import Dict
 
 
@@ -49,7 +50,7 @@ class ArtifactArtifactDbusSignalListener(DbusSignalListener, abc.ABC):
         - Listen to signals relevant to artifacts themselves.
 
     Collaborators:
-        - pythoneda.application.pythoneda.PythonEDA: Receives relevant domain events.
+        - pythoneda.shared.application.pythoneda.PythonEDA: Receives relevant domain events.
         - pythoneda.shared.artifact.events.artifact.infrastructure.dbus.*
     """
 
@@ -63,7 +64,7 @@ class ArtifactArtifactDbusSignalListener(DbusSignalListener, abc.ABC):
         """
         Retrieves the configured signal receivers.
         :param app: The PythonEDA instance.
-        :type app: pythoneda.application.PythonEDA
+        :type app: pythoneda.shared.application.PythonEDA
         :return: A dictionary with the signal name as key, and the tuple interface and bus type as the value.
         :rtype: Dict
         """
