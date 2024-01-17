@@ -27,3 +27,11 @@ from .artifact_commit_pushed_cli_handler import ArtifactCommitPushedCliHandler
 from .artifact_commit_tagged_cli_handler import ArtifactCommitTaggedCliHandler
 from .artifact_tag_pushed_cli_handler import ArtifactTagPushedCliHandler
 from .repository_folder_cli import RepositoryFolderCli
+# vim: syntax=python ts=4 sw=4 sts=4 tw=79 sr et
+# Local Variables:
+# mode: python
+# python-indent-offset: 4
+# tab-width: 4
+# indent-tabs-mode: nil
+# fill-column: 79
+# End:
