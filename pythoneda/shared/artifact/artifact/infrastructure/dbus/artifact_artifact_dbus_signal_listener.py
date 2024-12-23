@@ -20,26 +20,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 import abc
-from dbus_next import BusType, Message
-from pythoneda.shared import Event
-from pythoneda.shared.artifact.events.artifact import (
-    ArtifactChangesCommitted,
-    ArtifactCommitPushed,
-    ArtifactCommitTagged,
-    ArtifactTagPushed,
-)
-from pythoneda.shared.artifact.events.artifact.infrastructure.dbus import (
-    DbusArtifactChangesCommitted,
-    DbusArtifactCommitPushed,
-    DbusArtifactCommitTagged,
-    DbusArtifactTagPushed,
-)
 from pythoneda.shared.infrastructure.dbus import DbusSignalListener
-from typing import Dict
+from typing import List
 
 
 class ArtifactArtifactDbusSignalListener(DbusSignalListener, abc.ABC):
-
     """
     A Port that listens to artifact events related to artifacts, via d-bus signals.
 
@@ -60,25 +45,16 @@ class ArtifactArtifactDbusSignalListener(DbusSignalListener, abc.ABC):
         """
         super().__init__()
 
-    def signal_receivers(self, app) -> Dict:
+    @classmethod
+    def event_packages(cls) -> List[str]:
         """
-        Retrieves the configured signal receivers.
-        :param app: The PythonEDA instance.
-        :type app: pythoneda.shared.application.PythonEDA
-        :return: A dictionary with the signal name as key, and the tuple interface and bus type as the value.
-        :rtype: Dict
+        Retrieves the packages of the supported events.
+        :return: The packages.
+        :rtype: List[str]
         """
-        result = {}
-        key = self.__class__.full_class_name(ArtifactChangesCommitted)
-        result[key] = [DbusArtifactChangesCommitted, BusType.SYSTEM]
-        key = self.__class__.full_class_name(ArtifactCommitPushed)
-        result[key] = [DbusArtifactCommitPushed, BusType.SYSTEM]
-        key = self.__class__.full_class_name(ArtifactCommitTagged)
-        result[key] = [DbusArtifactCommitTagged, BusType.SYSTEM]
-        key = self.__class__.full_class_name(ArtifactTagPushed)
-        result[key] = [DbusArtifactTagPushed, BusType.SYSTEM]
+        return ["pythoneda.shared.artifact.events.artifact.infrastructure.dbus"]
 
-        return result
+
 # vim: syntax=python ts=4 sw=4 sts=4 tw=79 sr et
 # Local Variables:
 # mode: python
